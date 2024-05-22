@@ -48,9 +48,9 @@ function App() {
         <a href="https://docs.amplify.aws/react/start/quickstart/#make-frontend-updates">
           Review next step of this tutorial.
         </a>
-        <div>
-          <OpportunityList />
-        </div>
+      </div>
+      <div>
+        <OpportunityList />
       </div>
       <button onClick={signOut}>Sign out</button>
     </main>
