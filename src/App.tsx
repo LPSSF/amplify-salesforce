@@ -5,6 +5,8 @@ import { generateClient } from "aws-amplify/data";
 import { Authenticator } from '@aws-amplify/ui-react'
 import '@aws-amplify/ui-react/styles.css'
 
+import OpportunityList from './salesforce/OpportunityList';
+
 const client = generateClient<Schema>();
 
 function App() {
@@ -46,6 +48,9 @@ function App() {
         <a href="https://docs.amplify.aws/react/start/quickstart/#make-frontend-updates">
           Review next step of this tutorial.
         </a>
+        <div>
+          <OpportunityList />
+        </div>
       </div>
       <button onClick={signOut}>Sign out</button>
     </main>
