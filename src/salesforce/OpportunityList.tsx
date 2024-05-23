@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { fetchOpportunities } from './salesforceService';
+import React, { useEffect, useState } from 'react';
+import {OpportunityService} from './OpportunityService';
 
 interface Opportunity {
+  Id: string;
   Name: string;
-  Amount: number;
-  LastActivityDate: string;
+  CloseDate: Date;
+  StageName: string;
+  // add other fields as needed
 }
 
 const OpportunityList: React.FC = () => {
@@ -12,26 +14,22 @@ const OpportunityList: React.FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const fetchedOpportunities = await fetchOpportunities();
-      setOpportunities(fetchedOpportunities);
+      const opportunitiesService = OpportunityService.getInstance();
+      const data = await opportunitiesService.fetchOpportunities();
+      setOpportunities(data);
     };
 
     fetchData();
   }, []);
 
   return (
-    <div>
-      <h2>Opportunities</h2>
-      <ul>
-        {opportunities.map((opportunity, index) => (
-          <li key={index}>
-            <h3>{opportunity.Name}</h3>
-            <p>Amount: {opportunity.Amount}</p>
-            <p>Last Activity Date: {opportunity.LastActivityDate}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ul>
+      {opportunities.map((opportunity) => (
+        <li key={opportunity.Id}>
+          {opportunity.Name} - {opportunity.CloseDate.toISOString()} - {opportunity.StageName}
+        </li>
+      ))}
+    </ul>
   );
 };
 
