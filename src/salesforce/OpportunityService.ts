@@ -14,7 +14,7 @@ export class OpportunityService {
   }
 
   public async fetchOpportunities(): Promise<any[]> {
-    const response = await axios.get(`${SF_BASE_URL}/query?q=SELECT+Name,CloseDate,StageName+FROM+Opportunity`, {
+    const response = await axios.get(`${SF_BASE_URL}/query?q=SELECT+Name,CloseDate,StageName+FROM+Opportunity+LIMIT+5`, {
       headers: {
         Authorization: `Bearer ${SF_ACCESS_TOKEN}`,
       },
