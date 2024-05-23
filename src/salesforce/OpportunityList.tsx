@@ -26,7 +26,7 @@ const OpportunityList: React.FC = () => {
     <ul>
       {opportunities.map((opportunity) => (
         <li key={opportunity.Id}>
-          {opportunity.Name} - {opportunity.CloseDate.toISOString()} - {opportunity.StageName}
+          {opportunity.Name} - {new Date(opportunity.CloseDate).toISOString()} - {opportunity.StageName}
         </li>
       ))}
     </ul>
